@@ -1,13 +1,13 @@
 import app from './app'
 import mongoose from 'mongoose'
-
-const port = 5000
+import config from './app/config'
 
 async function server() {
   try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/test')
-    app.listen(port, () => {
-      console.log(`Example app listening on port ${port}`)
+    await mongoose.connect(config.database_url_local)
+    console.log('connected')
+    app.listen(config.port, () => {
+      console.log(`Example app listening on port ${config.port}`)
     })
   } catch (error) {
     console.log(error)
